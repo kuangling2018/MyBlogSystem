@@ -4,7 +4,6 @@ const { Route } = require('express');
 
 /* GET home page. */
 var index = function (req, res) {
-  console.log('首页输出session数据', req.session);
   Post.get(null, function(err, result) {
     if(err) {
       result = []
