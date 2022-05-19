@@ -1,0 +1,33 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.reg {
+    display: grid;
+    row-gap: 20px;
+}
+.reg .reg-input {
+    display: grid;
+    grid-template-columns: 20% auto;
+}
+.reg .reg-input > label{
+    text-align: center;
+}
+.reg .reg-btn {
+    padding-left: 20%;
+    background-color: #eeeeee;
+}
+#blog {
+    position: relative;
+    height: 160px;
+}
+#blog div {
+    position: absolute;
+    bottom: 0px;
+}
+#blog .text {
+    width: 100%;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden; 
+}

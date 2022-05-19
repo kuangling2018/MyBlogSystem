@@ -1,0 +1,29 @@
+
+<% posts.length && posts.forEach(function(post, index) {
+    if(index % 3 == 0) { %>
+        <div class="row">
+    <% } %>
+    <div class="col-md-4" id="blog">
+        <h3><a href="/u/<%= post.name %>"><%= post.name %></a>说</h3>
+        <textarea 
+            class="text" 
+            rows="3" 
+            postTime="<%= post.time %>" 
+            onblur="textUpdate(this)" 
+            disabled
+        ><%= post.mes %>
+        </textarea>
+        <% if ( user && post.name == user.name) { %>
+        <div>
+            <button type="button" class="btn btn-primary" onclick="textfocus(this)">编辑</button>
+            <button type="button" class="btn btn-danger" postTime="<%= post.time %>" onclick="blogDelete(this)">删除</button>
+        </div>
+        <% } %>
+    </div>
+    <% if(index % 3 == 2) { %>
+        </div>
+    <% } %>
+<% }) %>
+<% if (posts.length % 3 != 0) { %> 
+</div>
+<%} %>

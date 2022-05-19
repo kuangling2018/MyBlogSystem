@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+  <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <% if(!user) { %>
+          <a class="navbar-brand" href="#">Microblog</a>
+          <% } else { %>
+            <a class="navbar-brand" href="#">
+              <%= user.name %>
+            </a>
+            <% } %>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <% if (title=='首页界面' ) { %>
+            <li class="active">
+              <% } else { %>
+            <li>
+              <% } %>
+                <a href="/">首页</a>
+            </li>
+            <% if(!user) { %>
+              <% if (title=='登录界面' ) { %>
+                <li class="active">
+                  <% } else { %>
+                <li>
+                  <% } %>
+                    <a href="/login">登录</a>
+                </li>
+                <% if (title=='注册界面' ) { %>
+                  <li class="active">
+                    <% } else { %>
+                  <li>
+                    <% } %>
+                      <a href="/reg">注册</a>
+                  </li>
+                  <% } else { %>
+                    <li><a href="/logout">登出</a></li>
+                    <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div id="container" class="container">
+    <% if (success) { %>
+      <div class="alert alert-success">
+        <%= success %>
+      </div>
+      <% } %>
+        <% if (error) { %>
+          <div class="alert alert-danger">
+            <%= error %>
+          </div>
+          <% } %>
+            <%- body %>
+              <hr />
+              <footer>
+                <p><a href="http://www.baidu.com/" target="_blank">baidu</a> 2012</p>
+              </footer>
+  </div>
+</body>
+<script src="/javascripts/jquery-3.6.0.js"></script>
+<script src="/javascripts/bootstrap.js"></script>
+<script>
+  $('#container>div.hero-unit p a.btn').hover(function () {
+    $(this).siblings('a').removeClass("btn-primary");
+    $(this).addClass("btn-primary")
+  })
+
+  function textfocus(currentDom) {
+    $(currentDom).parents().siblings('textarea').attr('disabled', false)
+    $(currentDom).parents().siblings('textarea').focus()
+  }
+
+  // 编辑博客
+  function textUpdate(currentDom) {
+    var { value } = currentDom
+    var time = $(currentDom).attr('postTime')
+    $(currentDom).attr('disabled', true);
+    var url = '/update?time=' + time + '&mes=' + value;
+    if (window.location.href.indexOf('u') < 0) {
+      url = url + '&isIndex=1' // 是否是首页跳转
+    }
+    window.location.href = url;
+  }
+
+  // 删除博客
+  function blogDelete(currentDom) {
+    var time = $(currentDom).attr('postTime')
+    var url = '/delete?time=' + time;
+    if (window.location.href.indexOf('u') < 0) {
+      url = url + '&isIndex=1' // 是否是首页跳转
+    }
+    window.location.href = url;
+  }
+</script>
+
+</html>

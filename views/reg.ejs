@@ -1,0 +1,27 @@
+<form method="post" action="/reg">
+    <legend>用户注册</legend>
+    <div class="reg">
+        <div class="reg-input">
+            <label for="name">用户名</label>
+            <div>
+                <input type="text" id="name" name="name" autocomplete='off'>
+                <p>你的账户名称，用于登录和显示。</p>
+            </div>
+        </div>
+        <div class="reg-input">
+            <label for="password">密码</label>
+            <div>
+                <input type="password" id="password" name="password" autocomplete='off'>
+            </div>
+        </div>
+        <div class="reg-input">
+            <label for="passwordRepeat">重复输入密码</label>
+            <div>
+                <input type="password" id="passwordRepeat" name="passwordRepeat" autocomplete='off'>
+            </div>
+        </div>
+        <div class="reg-btn">
+            <button type="submit" class="btn btn-primary">注册</button>
+        </div>
+    </div>
+</form>
